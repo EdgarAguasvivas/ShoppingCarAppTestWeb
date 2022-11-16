@@ -4,19 +4,19 @@ import { environment } from '../../environments/environment';
 import { endpoint } from '../constant/endpoind';
 import { BaseService } from './base-service';
 import { Invoice, InvoiceDetail } from '../model/invoice/Invoice.model';
-import { OrderHeader } from '../model/orderHeader.model';
+import { Order } from '../model/order.model';
 import { OrderDetail } from '../model/orderDetail.model';
 
 
 
 @Injectable()
-export class OrderHeaderService extends BaseService<OrderHeader, number> {
+export class OrderService extends BaseService<Order, number> {
 
   constructor(_httpClient: HttpClient) {
-    super(_httpClient, environment.url + endpoint.orderHeader );
+    super(_httpClient, environment.url + endpoint.order );
   }
   getCurrentOrder(customer:string) {
-    return this._httpClient.get<string>(environment.url + endpoint.orderHeader+`/getCurrentOrder?customer=${customer}`,this.httpOptions)
+    return this._httpClient.get<string>(environment.url + endpoint.order+`/getCurrentOrder?customer=${customer}`,this.httpOptions)
   }
  
 }

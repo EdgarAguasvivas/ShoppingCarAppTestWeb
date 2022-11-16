@@ -5,7 +5,7 @@ import { ProductService } from "../../../service/product.service";
 import { Product } from "../../../model/invoice/product";
 
 import {
-  OrderHeaderService,
+  OrderService,
   OrderDetailService,
 } from "../../../service/invoice.service";
 
@@ -36,7 +36,7 @@ export class InvoiceAddComponent implements OnInit {
     private router: Router,
     private alertService: AlertService,
     private productService: ProductService,
-    private orderHeaderService: OrderHeaderService,
+    private orderService: OrderService,
     private orderDetailService: OrderDetailService,
     private _modalService: NgbModal,
     private customerService: CustomerService
@@ -106,7 +106,7 @@ export class InvoiceAddComponent implements OnInit {
   async onLoad() {
     this.products = [];
     this.products = await this.productService.get().toPromise();
-    this.detailObj.orderId = await this.orderHeaderService
+    this.detailObj.orderId = await this.orderService
       .getCurrentOrder(this.currentCustomer)
       .toPromise();
     await this.orderDetailService
@@ -118,14 +118,14 @@ export class InvoiceAddComponent implements OnInit {
       });
   }
  async save() {
-    let ordrerId = await this.orderHeaderService
+    let ordrerId = await this.orderService
     .getCurrentOrder(this.currentCustomer)
     .toPromise();
     if (this.detail.length < 2)
       this.alertService.error("Debe haber al menos 2 articulos para facturar");
-      let order= await this.orderHeaderService.getByGuid(ordrerId).toPromise();
+      let order= await this.orderService.getByGuid(ordrerId).toPromise();
       order.invoiced=true;
-       this.orderHeaderService.put(0, order).subscribe(
+       this.orderService.put(0, order).subscribe(
       (response) => {
         this.onLoad();
         this.alertService.success("Factura registrada correctamente");

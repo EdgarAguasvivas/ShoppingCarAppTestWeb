@@ -8,7 +8,7 @@ import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 import { InvoiceAddComponent } from "./create/invoice-create.component";
 import { InvoiceRoutingModule } from "./invoice.route";
 import { ProductService } from "../../service/product.service";
-import { OrderDetailService, OrderHeaderService } from '../../service/invoice.service';
+import { OrderDetailService, OrderService } from '../../service/invoice.service';
 import { AccountService } from "../../service/account.service";
 import { AccountComponent } from "./account/account.component";
 import { CustomerService } from "../../service/customer.service";
@@ -29,7 +29,7 @@ import { CustomerService } from "../../service/customer.service";
  entryComponents:[AccountComponent],
   providers: [
     ProductService,
-    OrderHeaderService,
+    OrderService,
     OrderDetailService,
     AccountService,
     CustomerService

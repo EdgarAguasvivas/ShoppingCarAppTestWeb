@@ -2,7 +2,7 @@ export const endpoint = {
 
     product:'product',
     customer:'customer',
-    orderHeader:'orderHeader',
+    order:'order',
     orderDetail:'orderDetail',
     account:'account'
     

@@ -1,6 +1,6 @@
 import { BaseModel } from "./invoice/base-model"
 
-export class OrderHeader extends BaseModel
+export class Order extends BaseModel
 {
    customerId:string
    invoiced:boolean
